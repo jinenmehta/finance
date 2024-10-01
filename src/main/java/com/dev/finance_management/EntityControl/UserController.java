@@ -24,7 +24,15 @@ public class UserController {
     public User updateUser(@RequestBody User user, @PathVariable String username) {
         User u = userRepo.findByUsername(username);
         if (u != null) {
-            return userRepo.save(user);
+            u.setAge(user.getAge());
+            u.setEmail(user.getEmail());
+            u.setName(user.getName());
+            u.setPassword(user.getPassword());
+            u.setAnnual_income(user.getAnnual_income());
+            u.setUsername(user.getUsername());
+            u.setEmployment_type(user.getEmployment_type());
+            u.setHaveDematAccount(user.getHaveDematAccount());
+            return userRepo.save(u);
         }
         else {
             return u;

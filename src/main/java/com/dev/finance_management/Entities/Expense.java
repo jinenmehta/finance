@@ -23,8 +23,13 @@ public class Expense {
     @Column(nullable = false)
     private Date date;
     @Column(nullable = false)
-    private int ledgerId;
     private String location;
-    @Column(nullable = false)
-    private int userId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "ledger_id")
+    private ExpenseLedger ledger;
 }
