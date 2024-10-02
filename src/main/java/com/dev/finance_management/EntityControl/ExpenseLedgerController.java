@@ -18,4 +18,8 @@ public class ExpenseLedgerController {
     public ExpenseLedger createExpenseLedger(@RequestBody ExpenseLedger expenseLedger) {
         return expenseLedgerRepo.save(expenseLedger);
     }
+
+    public int findIdByLedger(String ledger) {
+        return expenseLedgerRepo.findByLedger(ledger).getId();
+    }
 }

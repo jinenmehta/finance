@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Management</title>
+    <link rel="stylesheet" href="css_files/home_style.css">
+</head>
+<body>
+<nav>
+    <ul id="nav-menu">
+        <!-- Placeholder for dynamic content using JavaScript -->
+    </ul>
+    <button id="theme-toggle-btn">🌞 Day Mode</button>
+</nav>
+
+<!-- Descriptive Content Section -->
+<section id="description">
+    <h1>Welcome to the Finance Management System</h1>
+    <p>This platform allows you to efficiently manage your financial assets including <strong>Expenses</strong>, <strong>Investments</strong>, and <strong>Equity</strong>. Our system helps you keep track of your finances, monitor growth, and make informed decisions.</p>
+
+    <div id="interactive-sections">
+        <div class="section" id="expenses">
+            <h2>Expenses Management</h2>
+            <p>Easily log and track your daily, weekly, or monthly expenses to monitor your spending habits and ensure you're staying within budget.</p>
+            <button class="details-btn" data-section="expenses-details">Learn More</button>
+        </div>
+
+        <div class="section" id="investments">
+            <h2>Investments Tracking</h2>
+            <p>Keep track of your investment portfolio, including stocks, bonds, mutual funds, and more, all in one place.</p>
+            <button class="details-btn" data-section="investments-details">Learn More</button>
+        </div>
+
+        <div class="section" id="equity">
+            <h2>Equity Monitoring</h2>
+            <p>Monitor the performance of your equity holdings and stay updated on market trends to make smart investment decisions.</p>
+            <button class="details-btn" data-section="equity-details">Learn More</button>
+        </div>
+    </div>
+
+    <!-- Hidden Detailed Sections for Each Category -->
+    <div id="expenses-details" class="details hidden">
+        <h3>More on Expenses</h3>
+        <p>With our expenses management module, you can categorize your expenses, set budget limits, and receive real-time alerts if you're overspending.</p>
+    </div>
+
+    <div id="investments-details" class="details hidden">
+        <h3>More on Investments</h3>
+        <p>Get detailed analytics on your investment performance, track returns, and receive insights on how to optimize your portfolio for future growth.</p>
+    </div>
+
+    <div id="equity-details" class="details hidden">
+        <h3>More on Equity</h3>
+        <p>Our equity monitoring tool allows you to visualize your holdings and provides real-time updates on market prices, trends, and insights.</p>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="script_files/homepage.js"></script>
+</body>
+</html>
