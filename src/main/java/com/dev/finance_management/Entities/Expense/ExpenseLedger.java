@@ -1,4 +1,4 @@
-package com.dev.finance_management.Entities;
+package com.dev.finance_management.Entities.Expense;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;

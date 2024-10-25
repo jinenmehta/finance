@@ -1,12 +1,10 @@
 package com.dev.finance_management.EntityControl;
 
-import com.dev.finance_management.Entities.Expense;
+import com.dev.finance_management.Entities.Expense.Expense;
 import com.dev.finance_management.Exceptions.GetExpense;
-import com.dev.finance_management.JpaRepo.ExpenseLedgerRepo;
 import com.dev.finance_management.JpaRepo.ExpenseRepo;
 import com.dev.finance_management.Mapper.UpdateExpense;
 import lombok.AllArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

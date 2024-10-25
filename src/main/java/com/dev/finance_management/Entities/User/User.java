@@ -1,5 +1,6 @@
-package com.dev.finance_management.Entities;
+package com.dev.finance_management.Entities.User;
 
+import com.dev.finance_management.Entities.Expense.Expense;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

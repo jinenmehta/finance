@@ -1,6 +1,6 @@
 package com.dev.finance_management.JpaRepo;
 
-import com.dev.finance_management.Entities.ExpenseLedger;
+import com.dev.finance_management.Entities.Expense.ExpenseLedger;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ExpenseLedgerRepo extends JpaRepository<ExpenseLedger, Integer> {

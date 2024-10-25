@@ -1,6 +1,6 @@
 package com.dev.finance_management.EntityControl;
 
-import com.dev.finance_management.Entities.User;
+import com.dev.finance_management.Entities.User.User;
 import com.dev.finance_management.JpaRepo.UserRepo;
 import org.springframework.web.bind.annotation.*;
 

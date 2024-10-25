@@ -1,6 +1,6 @@
 package com.dev.finance_management.EntityControl;
 
-import com.dev.finance_management.Entities.ExpenseLedger;
+import com.dev.finance_management.Entities.Expense.ExpenseLedger;
 import com.dev.finance_management.JpaRepo.ExpenseLedgerRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
