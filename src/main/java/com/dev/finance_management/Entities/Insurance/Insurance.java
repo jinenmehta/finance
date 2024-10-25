@@ -2,6 +2,8 @@ package com.dev.finance_management.Entities.Insurance;
 
 import com.dev.finance_management.Entities.Insurance.EnumClass.InsuranceType;
 import com.dev.finance_management.Entities.Insurance.EnumClass.PaymentTerm;
+import com.dev.finance_management.Entities.User.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -47,4 +49,9 @@ public class Insurance {
 
     @Column(nullable = false)
     private PaymentTerm paymentTerm;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
+    private User user;
 }
