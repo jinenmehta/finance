@@ -3,13 +3,16 @@ package com.dev.finance_management.Entities.User;
 import com.dev.finance_management.Entities.Expense.Expense;
 import com.dev.finance_management.Entities.Insurance.Insurance;
 import com.dev.finance_management.Entities.Investment.Funds.SIPs;
+import com.dev.finance_management.Entities.User.EnumClass.Role;
+import com.dev.finance_management.Tokens.Token;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -17,7 +20,9 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class User {
+@Data
+@Builder
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
@@ -44,6 +49,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @OneToMany(mappedBy = "user")
     @JsonManagedReference
     private List<Expense> expenses;
@@ -55,4 +63,12 @@ public class User {
     @OneToMany(mappedBy = "user")
     @JsonManagedReference
     private List<SIPs> sips;
+
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
 }

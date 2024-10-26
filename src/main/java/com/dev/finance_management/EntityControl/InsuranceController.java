@@ -44,13 +44,6 @@ public class InsuranceController {
         return ResponseEntity.ok(insurance);
     }
 
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<Insurance> deleteInsurance(@PathVariable int id) {
-        var insurance = insuranceRepo.findById(id).get();
-        insuranceRepo.delete(insurance);
-        return ResponseEntity.ok(insurance);
-    }
-
     @GetMapping("get/byinsNum/{insuranceNumber}")
     public ResponseEntity<Insurance> getInsuranceByInsNum(@PathVariable String insuranceNumber) {
         var insurance = insuranceRepo.findInsuranceByInsuranceNumber(insuranceNumber);
@@ -61,5 +54,12 @@ public class InsuranceController {
     public List<Insurance> getInsuranceByUser(@PathVariable User user) {
         var insurance = insuranceRepo.findInsuranceByUser(user);
         return insurance;
+    }
+
+    @DeleteMapping("delete/{id}")
+    public String deleteInsurance(@PathVariable int id) {
+        var insurance = insuranceRepo.findById(id).get();
+        insuranceRepo.delete(insurance);
+        return "Deleted Insurance";
     }
 }

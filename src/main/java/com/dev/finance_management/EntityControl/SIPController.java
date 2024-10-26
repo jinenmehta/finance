@@ -43,4 +43,11 @@ public class SIPController {
         var sips = sipRepo.getSIPsByUser(user);
         return sips;
     }
+
+    @DeleteMapping("delete/{id}")
+    public String deleteSIP(@PathVariable int id) {
+        var sip = sipRepo.findById(id).get();
+        sipRepo.delete(sip);
+        return "SIP deleted";
+    }
 }

@@ -36,4 +36,10 @@ public class ExpenseController {
         GetExpense getExpense = new GetExpense(expense.getDate(), expense.getLedger().getLedger(), expense.getAmount(), expense.getDescription(), expense.getLocation());
         return ResponseEntity.ok(getExpense);
     }
+
+    @DeleteMapping("delete/{id}")
+    public String deleteExpense(@PathVariable int id) {
+        expenseRepo.deleteById(id);
+        return "Deleted expense";
+    }
 }
