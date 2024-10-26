@@ -2,6 +2,7 @@ package com.dev.finance_management.Entities.User;
 
 import com.dev.finance_management.Entities.Expense.Expense;
 import com.dev.finance_management.Entities.Insurance.Insurance;
+import com.dev.finance_management.Entities.Investment.Funds.SIPs;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -50,4 +51,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     @JsonManagedReference
     private List<Insurance> insurances;
+
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    private List<SIPs> sips;
 }
