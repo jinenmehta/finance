@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Insurance Management</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="light-mode">
+<div class="navbar">
+  <a href="index.html">Home</a>
+  <a href="expense.html">Expenses</a>
+  <a href="insurance.html">Insurance</a>
+  <a href="sip.html">SIP</a>
+  <a href="user.html">Users</a>
+  <button onclick="toggleTheme()">Toggle Theme</button>
+</div>
+
+<main>
+  <h2>Insurance Management</h2>
+
+  <!-- Insurance Form -->
+  <form id="insuranceForm">
+    <input type="text" id="insuranceProvider" placeholder="Provider" required>
+    <input type="number" id="premiumAmount" placeholder="Premium Amount" required>
+    <button type="button" onclick="addInsurance()">Add Insurance</button>
+  </form>
+
+  <!-- Filter and Insurance List -->
+  <input type="text" id="insuranceFilter" placeholder="Filter by Provider" oninput="filterInsurance()">
+  <div id="insuranceList">Loading...</div>
+
+  <!-- Chart Container -->
+  <div class="chart-container">
+    <canvas id="insuranceChart"></canvas>
+  </div>
+</main>
+
+<script src="js/Chart.bundle.min.js"></script>
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle("dark-mode");
+    document.body.classList.toggle("light-mode");
+  }
+
+  async function addInsurance() {
+    const provider = document.getElementById('insuranceProvider').value;
+    const premium = document.getElementById('premiumAmount').value;
+    const response = await fetchData('/insurance/add', 'POST', { provider, premium });
+    if (response.success) {
+      alert('Insurance added');
+      loadInsurance();
+      updateInsuranceChart();
+    } else {
+      alert('Error adding insurance');
+    }
+  }
+
+  async function loadInsurance() {
+    const response = await fetchData('/insurance/list');
+    if (response) {
+      document.getElementById('insuranceList').innerHTML = response.map(insurance =>
+              `<div>${insurance.provider}: $${insurance.premium} <button onclick="deleteInsurance(${insurance.id})">Delete</button></div>`
+      ).join('');
+      updateInsuranceChart(response);
+    }
+  }
+
+  async function deleteInsurance(id) {
+    const response = await fetchData(`/insurance/delete/${id}`, 'DELETE');
+    if (response.success) {
+      alert('Insurance deleted');
+      loadInsurance();
+      updateInsuranceChart();
+    }
+  }
+
+  function filterInsurance() {
+    const filterText = document.getElementById('insuranceFilter').value.toLowerCase();
+    const insurances = document.querySelectorAll('#insuranceList div');
+    insurances.forEach(insurance => {
+      if (insurance.textContent.toLowerCase().includes(filterText)) {
+        insurance.style.display = '';
+      } else {
+        insurance.style.display = 'none';
+      }
+    });
+  }
+
+  function updateInsuranceChart(data = []) {
+    const labels = data.map(item => item.provider);
+    const premiums = data.map(item => item.premium);
+
+    const ctx = document.getElementById('insuranceChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels,
+        datasets: [{
+          data: premiums,
+          backgroundColor: ['#3498db', '#2ecc71', '#e74c3c', '#f1c40f', '#9b59b6']
+        }]
+      },
+      options: { responsive: true }
+    });
+  }
+
+  loadInsurance();
+</script>
+</body>
+</html>

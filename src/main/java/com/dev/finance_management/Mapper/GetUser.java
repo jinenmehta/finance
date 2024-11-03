@@ -1,14 +1,14 @@
 package com.dev.finance_management.Mapper;
 
-public record RegisterRequest(
+public record GetUser(
+        int id,
         String name,
         int age,
         String email,
-        String employmentType,
-        float annualIncome,
+        String employment_type,
+        float annual_income,
         Boolean haveDematAccount,
         String username,
-        String password,
         String role
 ) {
 }

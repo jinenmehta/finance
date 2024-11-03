@@ -4,6 +4,7 @@ import com.dev.finance_management.Configuration.JWTService;
 import com.dev.finance_management.Entities.User.EnumClass.Role;
 import com.dev.finance_management.Entities.User.User;
 import com.dev.finance_management.JpaRepo.UserRepo;
+import com.dev.finance_management.Mapper.RegisterRequest;
 import com.dev.finance_management.Tokens.Token;
 import com.dev.finance_management.Tokens.TokenRepo;
 import com.dev.finance_management.Tokens.TokenType;
